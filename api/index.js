@@ -116,4 +116,4 @@ app.post("/api/predict", async (req, res) => {
   }
 });
 
-module.exports = (req, res) => app(req, res);
+module.exports = app;
