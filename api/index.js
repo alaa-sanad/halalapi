@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const tf = require("@tensorflow/tfjs-node");
+const tf = require("@tensorflow/tfjs");
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
