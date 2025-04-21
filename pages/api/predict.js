@@ -1,7 +1,7 @@
-const tf = require("@tensorflow/tfjs");
-const fs = require("fs");
-const path = require("path");
-const axios = require("axios");
+import * as tf from "@tensorflow/tfjs";
+import fs from "fs";
+import path from "path";
+import axios from "axios";
 
 const MODEL_URL = "https://github.com/alaa-sanad/halalapi/releases/download/v1/model.json";
 const TOKENIZER_URL = "https://github.com/alaa-sanad/halalapi/releases/download/v1/tokenizer.json";
@@ -14,11 +14,7 @@ const MAX_LENGTH = 50;
 
 async function downloadFile(url, outputPath) {
   const writer = fs.createWriteStream(outputPath);
-  const response = await axios({
-    method: "GET",
-    url,
-    responseType: "stream"
-  });
+  const response = await axios({ method: "GET", url, responseType: "stream" });
   response.data.pipe(writer);
   return new Promise((resolve, reject) => {
     writer.on("finish", resolve);
@@ -37,7 +33,6 @@ async function loadTokenizer() {
 async function loadModel() {
   if (!model) {
     if (!fs.existsSync(MODEL_DIR)) fs.mkdirSync(MODEL_DIR);
-
     const modelPath = "file://" + path.join(MODEL_DIR, "model.json");
     const modelJsonPath = path.join(MODEL_DIR, "model.json");
 
